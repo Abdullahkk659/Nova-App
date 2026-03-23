@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #080810;
+  --bg2:      #0f0f1a;
+  --bg3:      #161625;
+  --bg4:      #1e1e30;
+  --bg5:      #252538;
+  --border:   #ffffff0d;
+  --border2:  #ffffff1a;
+  --border3:  #ffffff28;
+  --text:     #f2f2f8;
+  --text2:    #9090b0;
+  --text3:    #5a5a78;
+  --gold:     #c9a84c;
+  --gold2:    #e8c97a;
+  --rose:     #e05c7a;
+  --teal:     #2dd4bf;
+  --violet:   #8b5cf6;
+  --blue:     #60a5fa;
+  --grad:     linear-gradient(135deg, #c9a84c, #e8c97a);
+  --grad2:    linear-gradient(135deg, #8b5cf6, #e05c7a);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', sans-serif;
+  --radius:   12px;
+  --radius-lg: 18px;
+  --shadow:   0 4px 24px rgba(0,0,0,.5);
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-sans); cursor: pointer; }
+input, textarea { font-family: var(--font-sans); }
+img { display: block; max-width: 100%; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ─── Utilities ──────────────────────────────────────────── */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.text-muted { color: var(--text2); }
+.text-hint { color: var(--text3); }
+.text-gold { color: var(--gold); }
+.text-rose { color: var(--rose); }
+.font-serif { font-family: var(--font-serif); }
+.font-600 { font-weight: 600; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── Buttons ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px; padding: 9px 18px; border-radius: var(--radius);
+  font-size: 14px; font-weight: 500; border: none;
+  transition: opacity .15s, transform .1s;
+}
+.btn:active { transform: scale(.97); }
+.btn-gold { background: var(--grad); color: #1a1000; font-weight: 600; }
+.btn-gold:hover { opacity: .88; }
+.btn-outline {
+  background: transparent; color: var(--text2);
+  border: 1px solid var(--border2);
+}
+.btn-outline:hover { background: var(--bg3); color: var(--text); }
+.btn-ghost { background: transparent; color: var(--text2); border: none; }
+.btn-ghost:hover { background: var(--bg3); color: var(--text); }
+.btn-danger { background: transparent; color: var(--rose); border: 1px solid var(--rose)44; }
+.btn-danger:hover { background: var(--rose)22; }
+
+/* ─── Inputs ──────────────────────────────────────────── */
+.input {
+  width: 100%; background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 10px 14px; font-size: 14px;
+  color: var(--text); outline: none; transition: border .15s;
+}
+.input::placeholder { color: var(--text3); }
+.input:focus { border-color: var(--gold)66; }
+
+/* ─── Card ──────────────────────────────────────────── */
+.card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ─── Avatar ──────────────────────────────────────────── */
+.avatar {
+  border-radius: 50%; object-fit: cover; display: flex;
+  align-items: center; justify-content: center;
+  font-weight: 600; font-size: 13px; color: #fff; flex-shrink: 0;
+}
+.avatar-ring {
+  padding: 2px; border-radius: 50%;
+  background: conic-gradient(var(--gold), var(--rose), var(--violet), var(--gold));
+}
+.avatar-ring-seen { background: var(--bg4); }
+
+/* ─── Story ring ──────────────────────────────────────────── */
+.story-ring { display: inline-block; border-radius: 50%; padding: 2.5px; }
+.story-ring.unseen { background: conic-gradient(var(--gold), var(--rose), var(--violet), var(--gold)); }
+.story-ring.seen { background: var(--bg4); }
+.story-ring img,
+.story-ring .av-placeholder {
+  border-radius: 50%; border: 2.5px solid var(--bg2);
+  display: block;
+}
+
+/* ─── Spinners ──────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 24px; height: 24px; border: 2px solid var(--border2);
+  border-top-color: var(--gold); border-radius: 50%;
+  animation: spin .7s linear infinite; flex-shrink: 0;
+}
+
+/* ─── Fade animations ──────────────────────────────────────────── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-up { animation: fadeUp .28s ease both; }
+.animate-fade-in { animation: fadeIn .2s ease both; }
+
+/* ─── App layout ──────────────────────────────────────────── */
+.app-layout {
+  display: grid;
+  grid-template-columns: 72px 280px 1fr 300px;
+  height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .app-layout { grid-template-columns: 72px 240px 1fr; }
+  .right-panel { display: none; }
+}
+@media (max-width: 860px) {
+  .app-layout { grid-template-columns: 72px 1fr; }
+  .left-panel { display: none; }
+}
+@media (max-width: 560px) {
+  .app-layout { grid-template-columns: 1fr; grid-template-rows: 1fr 56px; }
+  .icon-nav { flex-direction: row; height: 56px; width: 100%; border-top: 1px solid var(--border); border-right: none; order: 2; }
+}
+
+/* ─── Upload progress bar ──────────────────────────────────────────── */
+.upload-progress-bar {
+  height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 8px;
+}
+.upload-progress-bar-fill {
+  height: 100%; background: var(--grad); border-radius: 2px;
+  transition: width .2s;
+}
+
+/* ─── Toast override (react-hot-toast) ──────────────────────────────────────────── */
+.hot-toast-custom {
+  background: var(--bg4) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border2) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  border-radius: var(--radius) !important;
+}
